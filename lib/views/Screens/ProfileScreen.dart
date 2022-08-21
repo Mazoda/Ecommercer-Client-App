@@ -1,10 +1,12 @@
 import 'package:clientecommerce/models/AppUser.dart';
+import 'package:clientecommerce/providers/fireStoreProvider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
   AppUser user;
@@ -94,11 +96,21 @@ class _ProfilePageState extends State<ProfilePage> {
                   SizedBox(
                     height: 20.h,
                   ),
-                  MyWidget("My Cart", Icons.card_travel),
+                  InkWell(
+                      onTap: () {
+                        Provider.of<FireStoreProvider>(context, listen: false)
+                            .changeSelecetedIndex(1);
+                      },
+                      child: MyWidget("My Cart", Icons.card_travel)),
                   SizedBox(
                     height: 20.h,
                   ),
-                  MyWidget("My Favourites", Icons.favorite_sharp),
+                  InkWell(
+                      onTap: () {
+                        Provider.of<FireStoreProvider>(context, listen: false)
+                            .changeSelecetedIndex(2);
+                      },
+                      child: MyWidget("My Favourites", Icons.favorite_sharp)),
                   SizedBox(
                     height: 20.h,
                   ),

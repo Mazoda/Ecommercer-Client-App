@@ -47,9 +47,9 @@ class AuthHelper {
   checkUser() async {
     User? user = firebaseAuth.currentUser;
     if (user == null) {
-      AppRoute.PushToWidget(FirstScreen());
+      AppRoute.PushWithReplacementToWidget(FirstScreen());
     } else {
-      AppRoute.PushToWidget(HomePageSCreen());
+      AppRoute.PushWithReplacementToWidget(HomePageSCreen());
     }
   
   }

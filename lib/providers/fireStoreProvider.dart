@@ -36,7 +36,6 @@ class FireStoreProvider extends ChangeNotifier {
   }
   int selectedIndex = 0;
   Widget currentWidget = HomePageTwo();
-
   changeSelecetedIndex(int value) {
     selectedIndex = value;
     if (selectedIndex == 0) {
@@ -119,6 +118,7 @@ class FireStoreProvider extends ChangeNotifier {
 
   addToCart(Product product, String userId) async {
     await FireStoreHelper.firestore.addToCart(product, userId);
+    
     notifyListeners();
   }
 

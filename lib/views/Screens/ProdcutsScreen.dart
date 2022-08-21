@@ -35,48 +35,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
                   color: Colors.white,
                   fontWeight: FontWeight.bold)),
         ),
-        // automaticallyImplyLeading: false,
         centerTitle: true,
       ),
-      // bottomNavigationBar: Container(
-      //   decoration: const BoxDecoration(
-      //     borderRadius: BorderRadius.only(
-      //         topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-      //     color: Colors.black,
-      //   ),
-      //   child: Padding(
-      //     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-      //     child: GNav(
-      //       backgroundColor: Colors.black,
-      //       activeColor: Colors.white,
-      //       color: Colors.white,
-      //       tabBackgroundColor: Colors.grey.shade800,
-      //       padding: EdgeInsets.all(8),
-      //       tabs: const [
-      //         GButton(
-      //           icon: Icons.home,
-      //           gap: 8,
-      //           text: "Home",
-      //         ),
-      //         GButton(
-      //           icon: Icons.shopping_cart,
-      //           gap: 8,
-      //           text: "cart",
-      //         ),
-      //         GButton(
-      //           icon: Icons.notifications,
-      //           gap: 8,
-      //           text: "Notification",
-      //         ),
-      //         GButton(
-      //           icon: Icons.person,
-      //           gap: 8,
-      //           text: "Profile",
-      //         )
-      //       ],
-      //     ),
-      //   ),
-      // ),
       body: Container(
         margin: EdgeInsets.only(top: 10.h, left: 10.w, right: 10.w),
         child: Column(

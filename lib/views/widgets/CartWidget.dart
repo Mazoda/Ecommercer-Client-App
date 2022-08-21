@@ -85,7 +85,7 @@ class CartWidget extends StatelessWidget {
                     ),
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: Text(product.price.toString(),
+                      child: Text("\$"+product.price.toString(),
                           textAlign: TextAlign.left,
                           style: GoogleFonts.poppins(
                             fontSize: 17.sp,

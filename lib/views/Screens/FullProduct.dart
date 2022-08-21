@@ -1,7 +1,9 @@
+import 'package:clientecommerce/AppRouter/AppRouter.dart';
 import 'package:clientecommerce/models/Category.dart';
 import 'package:clientecommerce/models/Product.dart';
 import 'package:clientecommerce/providers/authProvider.dart';
 import 'package:clientecommerce/providers/fireStoreProvider.dart';
+import 'package:clientecommerce/views/Screens/CartScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -10,7 +12,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class FullProduct extends StatefulWidget {
-
   Product product;
   FullProduct(this.product, {Key? key}) : super(key: key);
 
@@ -39,12 +40,35 @@ class _FullProductState extends State<FullProduct> {
               )),
           actions: [
             IconButton(
-              icon: const Icon(Icons.favorite),
+              icon: const Icon(
+                Icons.favorite,
+                color: Colors.red,
+              ),
               tooltip: 'Open shopping cart',
               onPressed: () {
                 // handle the press
-                Provider.of<FireStoreProvider>(context,listen: false).addToFavorites(
-                    widget.product, Provider.of<AuthProvider>(context,listen: false).user!.uid);
+                Provider.of<FireStoreProvider>(context, listen: false)
+                    .addToFavorites(
+                        widget.product,
+                        Provider.of<AuthProvider>(context, listen: false)
+                            .user!
+                            .uid);
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text("Favorites"),
+                        content: Text("Product added to Favorites"),
+                        actions: [
+                          MaterialButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text("Ok"),
+                          ),
+                        ],
+                      );
+                    });
               },
             )
           ],
@@ -131,22 +155,18 @@ class _FullProductState extends State<FullProduct> {
                               color: Colors.grey.shade400,
                             )))),
                     Spacer(),
-                    Row(
-                      children: [
-                        Text("Quantity: ",
-                            style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                    fontSize: 25.sp,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold))),
-                        Text(widget.product.quantity.toString(),
-                            style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                    fontSize: 20.sp,
-                                    color: Colors.grey.shade600,
-                                    fontWeight: FontWeight.bold))),
-                      ],
-                    ),
+                    Text("Quantity: ",
+                        style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                                fontSize: 25.sp,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold))),
+                    Text(widget.product.quantity.toString(),
+                        style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                                fontSize: 20.sp,
+                                color: Colors.grey.shade600,
+                                fontWeight: FontWeight.bold))),
                     Container(
                       decoration: BoxDecoration(
                           color: Colors.black,
@@ -188,8 +208,29 @@ class _FullProductState extends State<FullProduct> {
                                 onPressed: () async {
                                   await Provider.of<FireStoreProvider>(context,
                                           listen: false)
-                                      .addToCart(widget.product,
-                                          Provider.of<AuthProvider>(context,listen: false).user!.uid);
+                                      .addToCart(
+                                          widget.product,
+                                          Provider.of<AuthProvider>(context,
+                                                  listen: false)
+                                              .user!
+                                              .uid);
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: Text("Cart"),
+                                          content:
+                                              Text("Product added to cart"),
+                                          actions: [
+                                            MaterialButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text("Ok"),
+                                            ),
+                                          ],
+                                        );
+                                      });
                                 },
                                 child: Text(
                                   "Add To Cart",

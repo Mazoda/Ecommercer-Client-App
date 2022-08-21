@@ -45,52 +45,51 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         // automaticallyImplyLeading: false,
         centerTitle: true,
       ),
-      bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-          color: Colors.black,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-          child: GNav(
-            backgroundColor: Colors.black,
-            // selectedIndex: _seselectedIndex,
-            activeColor: Colors.white,
-            color: Colors.white,
-            tabBackgroundColor: Colors.grey.shade800,
-            padding: EdgeInsets.all(8),
-            // onTabChange: (index) {
-            //   setState(() {
-            //     _seselectedIndex = index;
-            //   });
-            //   AppRoute.pushScreenNav(index);
-            // },
-            tabs: const [
-              GButton(
-                icon: Icons.home,
-                gap: 8,
-                text: "Home",
-              ),
-              GButton(
-                icon: Icons.shopping_cart,
-                gap: 8,
-                text: "cart",
-              ),
-              GButton(
-                icon: Icons.notifications,
-                gap: 8,
-                text: "favorites",
-              ),
-              GButton(
-                icon: Icons.person,
-                gap: 8,
-                text: "Profile",
-              )
-            ],
+        bottomNavigationBar: Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+            color: Colors.black,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+            child: GNav(
+              onTabChange: (value) {
+                Provider.of<FireStoreProvider>(context,listen: false)
+                    .changeSelecetedIndex(value);
+              },
+              selectedIndex:
+                  Provider.of<FireStoreProvider>(context).selectedIndex,
+              backgroundColor: Colors.black,
+              activeColor: Colors.white,
+              color: Colors.white,
+              tabBackgroundColor: Colors.grey.shade800,
+              padding: EdgeInsets.all(8),
+              tabs: const [
+                GButton(
+                  icon: Icons.home,
+                  gap: 8,
+                  text: "Home",
+                ),
+                GButton(
+                  icon: Icons.shopping_cart,
+                  gap: 8,
+                  text: "cart",
+                ),
+                GButton(
+                  icon: Icons.favorite,
+                  gap: 8,
+                  text: "Favorites",
+                ),
+                GButton(
+                  icon: Icons.person,
+                  gap: 8,
+                  text: "Profile",
+                )
+              ],
+            ),
           ),
         ),
-      ),
       body: Container(
         margin: EdgeInsets.only(top: 10.h, left: 0.w),
         child: Column(

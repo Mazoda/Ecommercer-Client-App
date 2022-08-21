@@ -72,6 +72,6 @@ class _HomePageState extends State<HomePageSCreen> {
             ),
           ),
         ),
-        body: Provider.of<FireStoreProvider>(context).currentWidget);
+        body : Provider.of<FireStoreProvider>(context).currentWidget);
   }
 }
